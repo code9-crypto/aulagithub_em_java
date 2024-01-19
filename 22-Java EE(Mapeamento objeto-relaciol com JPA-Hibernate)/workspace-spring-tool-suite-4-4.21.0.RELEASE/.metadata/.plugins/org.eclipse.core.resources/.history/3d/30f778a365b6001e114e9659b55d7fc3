@@ -1,0 +1,38 @@
+package aplicacao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import dominio.Pessoa;
+
+public class Programa {
+
+	public static void main(String[] args) {
+		
+		Pessoa p1 = new Pessoa(1, "Ester Caetano", "ester@gmail.com");
+		Pessoa p2 = new Pessoa(2, "Hadassa Caetano", "hadassa@gmail.com");
+		Pessoa p3 = new Pessoa(3, "William Caetano", "william@gmail.com");
+		
+		//O EntityManagerFactory carrega as configurações com o banco de dados
+		//OBS.: o valor da persistence-unite vem do arquivo persistence.xml
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("exemplo-jpa");
+		//EntityManager utiliza os comandos as quais farão as interações no banco
+		EntityManager em = emf.createEntityManager();
+		
+		//Quando for iniciar uma ação no banco diferente de leitura
+		//usa-se uma transação para iniciar
+		em.getTransaction().begin();
+		em.persist(p1);
+		em.persist(p2);
+		em.persist(p3);
+		em.getTransaction().commit();
+		//E usa-se outra para finalizar a transação
+		System.out.println("Pronto");
+		
+		
+		
+
+	}
+
+}
