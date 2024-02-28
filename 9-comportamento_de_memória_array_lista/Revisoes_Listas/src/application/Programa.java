@@ -35,10 +35,7 @@ public class Programa {
 		int idEmp = sc.nextInt();
 		Employee idEmpSearched = list.stream().filter(x -> x.getId() == idEmp).findFirst().orElse(null);
 		if (idEmpSearched == null) {
-			System.out.println("This id does not exist!");
-			System.out.println();
-			System.out.println("List of Employees:");
-			list.forEach(System.out::println);
+			System.out.println("This id does not exist!");			
 		} else {
 			System.out.print("Enter the percentage: ");
 			double percEmp = sc.nextDouble();
@@ -47,11 +44,12 @@ public class Programa {
 				if (emp.getId() == idEmpSearched.getId()) {
 					emp.increaseSalary(percEmp);
 				}
-			}
-			System.out.println();
-			System.out.println("List of Employees:");
-			list.forEach(System.out::println);
+			}			
 		}
+		
+		System.out.println();
+		System.out.println("List of Employees:");
+		list.forEach(System.out::println);
 		
 		sc.close();
 
