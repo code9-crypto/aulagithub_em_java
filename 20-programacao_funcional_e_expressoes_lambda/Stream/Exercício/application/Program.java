@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
@@ -42,7 +43,9 @@ public class Program {
 					.filter(x -> x.getSalary() > salary)
 					.map(x -> x.getEmail())
 					.collect(Collectors.toList());
-			names.sort((a, b) -> a.toLowerCase().compareTo(b.toLowerCase()));
+			Comparator<String> comp = (x, y) -> x.toLowerCase().compareTo(y.toLowerCase());
+			//names.sort((a, b) -> a.toLowerCase().compareTo(b.toLowerCase()));
+			names.sort(comp.reversed());
 			names.forEach(System.out::println);
 			
 			//Somando os valores de todos os nomes que iniciam com a letra M
